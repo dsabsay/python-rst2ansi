@@ -1,0 +1,45 @@
+Docutils bullet list:
+  $ echo "
+  > Docutils Bullet List
+  > 
+  > - This is item 1 
+  > - This is item 2
+  > 
+  > - Bullets are '-', '*' or '+'. 
+  >   Continuing text must be aligned 
+  >   after the bullet and whitespace.
+  > 
+  > Note that a blank line is required 
+  > before the first item and after the 
+  > last, but is optional between items.
+  > " > paragraph.rst
+  $ rst2ansi paragraph.rst
+  Traceback (most recent call last):
+    File "/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+      "__main__", mod_spec)
+    File "/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/lib/python3.6/runpy.py", line 85, in _run_code
+      exec(code, run_globals)
+    File "/Users/kwm/git/python-rst2ansi/rst2ansi/commandline.py", line 37, in <module>
+      main()
+    File "/Users/kwm/git/python-rst2ansi/rst2ansi/commandline.py", line 24, in main
+      process_file(sys.stdin)
+    File "/Users/kwm/git/python-rst2ansi/rst2ansi/commandline.py", line 28, in process_file
+      out = rst2ansi(f.read())
+    File "/Users/kwm/git/python-rst2ansi/rst2ansi/__init__.py", line 48, in rst2ansi
+      out = core.publish_string(input_string.decode('utf-8'),
+  AttributeError: 'str' object has no attribute 'decode' (no-eol)
+
+Docutils enumerated lists:
+  $ echo "
+  > Docutils Enumerated List
+  > 
+  > 3. This is the first item 
+  > 4. This is the second item 
+  > 5. Enumerators are arabic numbers, 
+  >    single letters, or roman numerals 
+  > 6. List items should be sequentially 
+  >    numbered, but need not start at 1 
+  >    (although not all formatters will 
+  >    honour the first index). 
+  > #. This item is auto-enumerated
+  > " > paragraph.rst

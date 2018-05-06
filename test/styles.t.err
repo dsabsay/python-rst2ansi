@@ -1,0 +1,29 @@
+Test foreground colors:
+
+  $ echo ':ansi-fg-black:`black`' > styles.rst
+  $ echo ':ansi-fg-red:`red`' >> styles.rst
+  $ echo ':ansi-fg-green:`green`' >> styles.rst
+  $ echo ':ansi-fg-yellow:`yellow`' >> styles.rst
+  $ echo ':ansi-fg-blue:`blue`' >> styles.rst
+  $ echo ':ansi-fg-magenta:`magenta`' >> styles.rst
+  $ echo ':ansi-fg-cyan:`cyan`' >> styles.rst
+  $ echo ':ansi-fg-white:`white`' >> styles.rst
+  $ rst2ansi styles.rst
+  Traceback (most recent call last):
+    File "/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+      "__main__", mod_spec)
+    File "/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/lib/python3.6/runpy.py", line 85, in _run_code
+      exec(code, run_globals)
+    File "/Users/kwm/git/python-rst2ansi/rst2ansi/commandline.py", line 37, in <module>
+      main()
+    File "/Users/kwm/git/python-rst2ansi/rst2ansi/commandline.py", line 24, in main
+      process_file(sys.stdin)
+    File "/Users/kwm/git/python-rst2ansi/rst2ansi/commandline.py", line 28, in process_file
+      out = rst2ansi(f.read())
+    File "/Users/kwm/git/python-rst2ansi/rst2ansi/__init__.py", line 48, in rst2ansi
+      out = core.publish_string(input_string.decode('utf-8'),
+  AttributeError: 'str' object has no attribute 'decode' (no-eol)
+
+Test background colors:
+
+  $ echo ':ansi-bg-black:`black`' > styles.rst

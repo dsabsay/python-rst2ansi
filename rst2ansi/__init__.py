@@ -33,17 +33,27 @@ from .ansi import COLORS, STYLES
 
 def rst2ansi(input_string, output_encoding='utf-8'):
 
-  overrides = {}
-  overrides['input_encoding'] = 'unicode'
+    overrides = {
+        'input_encoding': 'unicode',
+        'output_encoding': 'unicode'
+    }
 
-  def style_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
-    return [nodes.TextElement(rawtext, text, classes=[name])], []
+    def style_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
+        return [nodes.TextElement(rawtext, text, classes=[name])], []
 
-  for color in COLORS:
-    roles.register_local_role('ansi-fg-' + color, style_role)
-    roles.register_local_role('ansi-bg-' + color, style_role)
-  for style in STYLES:
-    roles.register_local_role('ansi-' + style, style_role)
+    for color in COLORS:
+        roles.register_local_role('ansi-fg-' + color, style_role)
+        roles.register_local_role('ansi-bg-' + color, style_role)
+    for style in STYLES:
+        roles.register_local_role('ansi-' + style, style_role)
 
-  out = core.publish_string(input_string.decode('utf-8'), settings_overrides=overrides, writer=Writer(unicode=output_encoding.startswith('utf')))
-  return out.decode(output_encoding)
+    out = core.publish_string(input_string,
+                              settings_overrides=overrides,
+                              writer=Writer(unicode=output_encoding.startswith('utf')))
+
+    # print('input string: {}'.format(input_string))
+    # print('out: {}'.format(out))
+    # return out.decode(output_encoding)
+
+    # out is unicode
+    return out
